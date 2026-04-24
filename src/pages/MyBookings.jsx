@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 
@@ -10,25 +17,26 @@ export default function MyBookings() {
   }, []);
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      <div style={{ padding: "30px" }}>
-        <h1>My Bookings</h1>
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <h1 className="text-3xl font-bold mb-8">My Bookings</h1>
 
         {bookings.length === 0 ? (
-          <p>No bookings found</p>
+          <p>No bookings found.</p>
         ) : (
-          bookings.map((booking, index) => (
-            <div key={index} style={{ marginTop: "20px" }}>
-              <h3>{booking.eventName}</h3>
-              <p>{booking.address}</p>
-              <p>{booking.city}</p>
-              <p>{booking.state}</p>
-              <p>{booking.bookingDate}</p>
-              <p>{booking.bookingTime}</p>
-            </div>
-          ))
+          <div className="space-y-6">
+            {bookings.map((item, index) => (
+              <div key={index} className="bg-white border rounded-2xl p-6 shadow-md">
+                <h3 className="text-xl font-bold">{item.eventName}</h3>
+                <p>{item.address}</p>
+                <p>{item.city}, {item.state}</p>
+                <p>Slot: {item.bookingTime}</p>
+                <p>Date: {item.bookingDate}</p>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </div>
